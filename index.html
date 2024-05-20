@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News APP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class="main-nav container">
+            <a href="#" onclick="reload()">
+                <img src="assets/logo.png" alt="logo">
+            </a>
+            <div class="nav-links">
+                <ul>
+                    <li class="nav-item hover-link">Politics</li>
+                    <li class="nav-item hover-link">Web stories</li>
+                    <li class="nav-item hover-link">Finance</li>
+                    <li class="nav-item hover-link">Industry</li>
+                    <li class="nav-item hover-link">Technology</li>
+                </ul>
+
+            </div>
+            <div class="search-bar flex">
+                <input type="text" placeholder="e.g. Science" id="input">
+                <button class="search-button" id="search-button">Search</button>
+            </div>
+        </div>
+
+    </nav>
+
+    <main>
+        <div class="card-container container flex" id="card-container">
+            <div class="card ">
+                <div class="card-header">
+                    <img src="https://via.placeholder.com/400x200" alt="news-img" id="news-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="news-title" id="news-title">this is the title</h3>
+                    <h6 id="news-source">this is date</h6>
+                    <p class="news-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed repellendus,
+                        dolores minus ipsam sequi magni vero cupiditate obcaecati quo aperiam.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <template id="template-news-card">
+        <div class="card ">
+            <div class="card-header">
+                <img src="https://via.placeholder.com/400x200" alt="news-img" id="news-img">
+            </div>
+            <div class="card-content">
+                <h3 class="news-title" id="news-title">this is the title</h3>
+                <h6 id="news-source">this is date</h6>
+                <p class="news-desc" id="news-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
+                    repellendus,
+                    dolores minus ipsam sequi magni vero cupiditate obcaecati quo aperiam.</p>
+            </div>
+    </template>
+
+
+    <script type='module' src="script.js"></script>
+</body>
+
+</html>
