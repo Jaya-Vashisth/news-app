@@ -1,5 +1,5 @@
 // const apiKey = "pub_44533d948210fa5fa0d1173f7fd8d0ef32c22";
-import NEWS_API from "./apikey";
+import NEWS_API from "./apikey.js";
 const url = "https://newsdata.io/api/1/latest?&language=en&q=";
 
 function reload() {
