@@ -1,6 +1,6 @@
-import NEWS_API from "./apikey.js";
-
-const url = "https://newsapi.org/v2/everything?q=";
+// const apiKey = "pub_44533d948210fa5fa0d1173f7fd8d0ef32c22";
+import NEWS_API from "./apikey";
+const url = "https://newsdata.io/api/1/latest?&language=en&q=";
 
 function reload() {
   window.location.reload();
@@ -9,7 +9,7 @@ function reload() {
 async function fetchNews(query) {
   const response = await fetch(`${url}${query}&apiKey=${NEWS_API}`);
   const data = await response.json();
-  bindData(data.articles);
+  bindData(data.results);
 }
 
 //bind atricles
@@ -20,7 +20,7 @@ function bindData(articles) {
 
   articles.forEach((article) => {
     //display all articles on home page
-    if (!article.urlToImage) return;
+    if (!article.image_url) return;
     const cardClone = newsCardTemp.content.cloneNode(true);
     fillDataInCard(cardClone, article);
     cardcontainer.appendChild(cardClone);
@@ -34,19 +34,19 @@ function fillDataInCard(cardClone, article) {
   const newssource = cardClone.querySelector("#news-source");
   const newdesc = cardClone.querySelector("#news-desc");
 
-  newsImg.src = article.urlToImage;
+  newsImg.src = article.image_url;
   newstitle.innerHTML = article.title;
   newdesc.innerHTML = article.description;
 
-  const date = new Date(article.publishedAt).toLocaleString("en-US", {
+  const date = new Date(article.pubDate).toLocaleString("en-US", {
     timeZone: "Asia/Jakarta",
   });
 
-  newssource.innerHTML = `${article.source.name} • ${date}`;
+  newssource.innerHTML = `${article.source_id} • ${date}`;
 
   //open the article
   cardClone.firstElementChild.addEventListener("click", () => {
-    window.open(article.url, "_blank");
+    window.open(article.link, "_blank");
   });
 }
 
