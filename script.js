@@ -1,6 +1,5 @@
-// const apiKey = "pub_44533d948210fa5fa0d1173f7fd8d0ef32c22";
 import NEWS_API from "./apikey.js";
-const url = "https://newsdata.io/api/1/latest?&language=en&q=";
+const url = "https://newsapi.org/v2/everything?q=";
 
 function reload() {
   window.location.reload();
@@ -9,7 +8,7 @@ function reload() {
 async function fetchNews(query) {
   const response = await fetch(`${url}${query}&apiKey=${NEWS_API}`);
   const data = await response.json();
-  bindData(data.results);
+  bindData(data.articles);
 }
 
 //bind atricles
@@ -20,7 +19,7 @@ function bindData(articles) {
 
   articles.forEach((article) => {
     //display all articles on home page
-    if (!article.image_url) return;
+    if (!article.urlToImage) return;
     const cardClone = newsCardTemp.content.cloneNode(true);
     fillDataInCard(cardClone, article);
     cardcontainer.appendChild(cardClone);
@@ -34,19 +33,19 @@ function fillDataInCard(cardClone, article) {
   const newssource = cardClone.querySelector("#news-source");
   const newdesc = cardClone.querySelector("#news-desc");
 
-  newsImg.src = article.image_url;
+  newsImg.src = article.urlToImage;
   newstitle.innerHTML = article.title;
   newdesc.innerHTML = article.description;
 
-  const date = new Date(article.pubDate).toLocaleString("en-US", {
+  const date = new Date(article.publishedAt).toLocaleString("en-US", {
     timeZone: "Asia/Jakarta",
   });
 
-  newssource.innerHTML = `${article.source_id} • ${date}`;
+  newssource.innerHTML = `${article.source.name} • ${date}`;
 
   //open the article
   cardClone.firstElementChild.addEventListener("click", () => {
-    window.open(article.link, "_blank");
+    window.open(article.url, "_blank");
   });
 }
 
